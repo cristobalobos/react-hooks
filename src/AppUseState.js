@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Component, useState } from 'react'
 
 const Header = () => {
   const styles = {
@@ -26,32 +26,45 @@ const Header = () => {
   )
 }
 
-const App = () => {
-  const [ clicks, setClicks ] = useState(50)
-  const [ title, setTitle ] = useState('Hook useState')
+const AppUseState = () => {
+  const [ clicks, setClicks ] = useState(0)
 
   const addClicks = () => {
     setClicks(clicks + 1)
   }
 
-  const handleInput = (e) => {
-    setTitle(e.target.value)
-  }
-
   return (
     <div>
       <Header />
-      <input
-        type="text"
-        value={title}
-        onChange={handleInput}  
-      />
       <button onClick={addClicks}>
         Clicks ({ clicks })
       </button>
-      <h3>{ title }</h3>
     </div>
   )
 }
 
-export default App
+// class App extends Component {
+//   state = {
+//     clicks: 0
+//   }
+
+//   addClicks = () => {
+//     this.setState(state => ({
+//       clicks: state.clicks + 1
+//     }))
+//   }
+
+//   render () {
+//     const { clicks } = this.state
+//     return (
+//       <div>
+//         <Header />
+//         <button onClick={this.addClicks}>
+//           Clicks ({ clicks })
+//         </button>
+//       </div>
+//     )
+//   }
+// }
+
+export default AppUseState

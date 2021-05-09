@@ -26,32 +26,21 @@ const Header = () => {
   )
 }
 
-const App = () => {
-  const [ clicks, setClicks ] = useState(50)
-  const [ title, setTitle ] = useState('Hook useState')
+const AppUseStateBolean = () => {
+  const [ isActive, setActive ] = useState(false)
 
-  const addClicks = () => {
-    setClicks(clicks + 1)
-  }
-
-  const handleInput = (e) => {
-    setTitle(e.target.value)
+  const toggle = () => {
+    setActive(!isActive)
   }
 
   return (
     <div>
-      <Header />
-      <input
-        type="text"
-        value={title}
-        onChange={handleInput}  
-      />
-      <button onClick={addClicks}>
-        Clicks ({ clicks })
+      { isActive && <Header /> }
+      <button onClick={toggle}>
+        { isActive ? 'Desactivar' : 'Activar' }
       </button>
-      <h3>{ title }</h3>
     </div>
   )
 }
 
-export default App
+export default AppUseStateBolean

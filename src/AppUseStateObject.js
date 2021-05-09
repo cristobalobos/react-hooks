@@ -26,16 +26,31 @@ const Header = () => {
   )
 }
 
-const App = () => {
-  const [ clicks, setClicks ] = useState(50)
-  const [ title, setTitle ] = useState('Hook useState')
+const AppUseStateObject = () => {
+  const [ state, setState ] = useState({
+    clicks: 0,
+    title: ''
+  })
+
+  const merge = (nextState) => {
+    setState({
+      ...state,
+      ...nextState
+    })
+  }
 
   const addClicks = () => {
-    setClicks(clicks + 1)
+    merge({
+      clicks: state.clicks + 1
+    })
   }
 
   const handleInput = (e) => {
-    setTitle(e.target.value)
+    const title = e.target.value
+
+    merge({
+      title
+    })
   }
 
   return (
@@ -43,15 +58,15 @@ const App = () => {
       <Header />
       <input
         type="text"
-        value={title}
+        value={state.title}
         onChange={handleInput}  
       />
       <button onClick={addClicks}>
-        Clicks ({ clicks })
+        Clicks ({ state.clicks })
       </button>
-      <h3>{ title }</h3>
+      <h3>{ state.title }</h3>
     </div>
   )
 }
 
-export default App
+export default AppUseStateObject
